@@ -9,32 +9,34 @@ const todosData = [
   { id: 3, text: 'swim with a fish', done: false },
 ];
 
-// TODO Fix all list re-rendering when only one component is changed :(
-
 interface TodoProps {
   text: string;
   done: boolean;
   onClick: () => void;
 }
 
-const Todo = memo(({ text, done, onClick }: TodoProps) => {
-  const ref = useRenderHighlight(css.render);
-  return (
-    <li ref={ref} onClick={onClick} className={css.listItem}>
-      {done ? '[x]' : '[ ]'} {text}
-    </li>
-  );
-});
+const Todo = memo(
+  ({ text, done, onClick }: TodoProps) => {
+    const ref = useRenderHighlight(css.render);
+    return (
+      <li ref={ref} onClick={onClick} className={css.listItem}>
+        {done ? '[x]' : '[ ]'} {text}
+      </li>
+    );
+  },
+  (prevTodo, nextTodo) => {
+    return prevTodo.done === nextTodo.done;
+  },
+);
 
 export const TodoList = () => {
   const [todos, setTodos] = useState(todosData);
 
-  const handleTodoClick = useCallback(
-    (id: number) => {
-      setTodos(todos.map((todo) => (todo.id === id ? { ...todo, done: !todo.done } : todo)));
-    },
-    [todos],
-  );
+  const handleTodoClick = useCallback((id: number) => {
+    setTodos((prevTodos) => {
+      return prevTodos.map((todo) => (todo.id === id ? { ...todo, done: !todo.done } : todo));
+    });
+  }, []);
 
   return (
     <CenteredLayout className="gap-4">

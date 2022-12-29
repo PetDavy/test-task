@@ -30,7 +30,7 @@ const Button = ({ button, selectedButton, setSelectedButton }: ButtonProps) => {
   );
 };
 
-export const Refactor1 = () => {
+export const OptionButtons = () => {
   const [selectedButton, setSelectedButton] = useState<ButtonType | null>(null);
   return (
     <CenteredLayout className="gap-4">

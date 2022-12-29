@@ -25,10 +25,10 @@ export const Header = () => (
     <nav className="bg-gray-600 shadow-lg">
       <ul className="flex items-center">
         <NavItem to="/">Home</NavItem>
-        <NavItem to="/refactor-1">Refactor 1</NavItem>
-        <NavItem to="/refactor-2">Refactor 2</NavItem>
-        <NavItem to="/optimize-1">Optimize 1</NavItem>
-        <NavItem to="/optimize-2">Optimize 2</NavItem>
+        <NavItem to="/option-buttons">Options</NavItem>
+        <NavItem to="/qna">QNA</NavItem>
+        <NavItem to="/todos">Todos</NavItem>
+        <NavItem to="/scroller">Scroller</NavItem>
         <NavItem to="/ranges">Ranges</NavItem>
       </ul>
     </nav>

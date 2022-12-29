@@ -1,7 +1,7 @@
 import { memo, useCallback, useState } from 'react';
 import { CenteredLayout } from '~/components';
 import { useRenderHighlight } from '~/utils';
-import css from './optimize-1.module.scss';
+import css from './TodoList.module.scss';
 
 const todosData = [
   { id: 1, text: 'run a marathon', done: false },
@@ -26,7 +26,7 @@ const Todo = memo(({ text, done, onClick }: TodoProps) => {
   );
 });
 
-export const Optimize1 = () => {
+export const TodoList = () => {
   const [todos, setTodos] = useState(todosData);
 
   const handleTodoClick = useCallback(

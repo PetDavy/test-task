@@ -10,7 +10,7 @@ const ExpensiveComponent = () => {
   return <div>Ohh.. so expensive</div>;
 };
 
-export const Optimize2 = () => {
+export const Scroller = () => {
   const [scrollTop, setScrollTop] = useState(0);
 
   useEffect(() => {

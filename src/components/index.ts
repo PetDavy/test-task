@@ -1,1 +1,2 @@
-export * from './layouts';
+export * from './Layouts/Layouts';
+export * from './Welcome';

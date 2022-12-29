@@ -7,7 +7,7 @@ interface QuestionOrAnswer {
   answer?: string;
 }
 
-const QnA: QuestionOrAnswer[] = [
+const QnAList: QuestionOrAnswer[] = [
   { question: 'Do you run like a fish?' },
   { answer: 'Absolutely man' },
   { question: 'Have you tried to swim like a dinosaur?' },
@@ -24,11 +24,11 @@ const QnaRender = ({ question, answer }: QuestionOrAnswer) => {
   }
 };
 
-export const Refactor2 = () => {
+export const QnA = () => {
   return (
     <CenteredLayout className="gap-2">
       <div className="text-3xl mb-2">See the code</div>
-      {QnA.map((item, index) => (
+      {QnAList.map((item, index) => (
         <QnaRender key={index} {...item} />
       ))}
     </CenteredLayout>

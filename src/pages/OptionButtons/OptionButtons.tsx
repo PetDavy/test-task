@@ -1,19 +1,16 @@
 import clsx from 'clsx';
 import { useState } from 'react';
 import { CenteredLayout } from '~/components';
+import { ButtonType, SelectedButtonType } from './types';
 
-// TODO is there a way to not write this twice? =\
-type ButtonType = 'fast' | 'quality' | 'cheap';
-
-const buttons: ButtonType[] = ['fast', 'quality', 'cheap'];
+const buttons: ButtonType[] = Object.values(ButtonType);
 
 interface ButtonProps {
   button: ButtonType;
-  selectedButton: ButtonType | null;
+  selectedButton: SelectedButtonType;
   setSelectedButton: (value: ButtonType) => void;
 }
 
-// TODO is it possible to improve this component's interface (props)?
 const Button = ({ button, selectedButton, setSelectedButton }: ButtonProps) => {
   const style = button === selectedButton;
   return (
@@ -31,7 +28,7 @@ const Button = ({ button, selectedButton, setSelectedButton }: ButtonProps) => {
 };
 
 export const OptionButtons = () => {
-  const [selectedButton, setSelectedButton] = useState<ButtonType | null>(null);
+  const [selectedButton, setSelectedButton] = useState<SelectedButtonType>(null);
   return (
     <CenteredLayout className="gap-4">
       <div className="text-3xl">See the code</div>

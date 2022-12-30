@@ -30,6 +30,7 @@ export const Header = () => (
         <NavItem to="/todos">Todos</NavItem>
         <NavItem to="/scroller">Scroller</NavItem>
         <NavItem to="/ranges">Ranges</NavItem>
+        <NavItem to="/anotations/images">Anotations</NavItem>
       </ul>
     </nav>
   </header>

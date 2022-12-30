@@ -1,6 +1,6 @@
 import { Outlet, ReactLocation, Route, Router } from '@tanstack/react-location';
-import { Welcome } from '~/components';
-import { OptionButtons, QnA, TodoList, Scroller, Ranges } from '~/pages';
+import { Welcome, ProtectedRout } from '~/components';
+import { OptionButtons, QnA, TodoList, Scroller, Ranges, Anotations, NotFound } from '~/pages';
 import { Header } from './Header';
 
 const reactLocation = new ReactLocation();
@@ -29,6 +29,27 @@ const routes: Route[] = [
   {
     path: 'ranges',
     element: <Ranges />,
+  },
+  {
+    path: 'anotations',
+    children: [
+      {
+        path: 'login',
+        element: <div>Login</div>,
+      },
+      {
+        path: 'images',
+        element: (
+          <ProtectedRout>
+            <Anotations />
+          </ProtectedRout>
+        ),
+      },
+    ],
+  },
+  {
+    path: '*',
+    element: <NotFound />,
   },
 ];
 

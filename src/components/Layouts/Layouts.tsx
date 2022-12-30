@@ -12,7 +12,7 @@ export const CenteredLayout = ({
   // scroll height seems bugged :\
   <div
     className={clsx(
-      'flex flex-col items-center justify-center h-[calc(100vh-48px)] pb-32 text-slate-700',
+      'flex flex-col items-center justify-center h-[calc(100vh-48px)] text-slate-700',
       className,
     )}
   >

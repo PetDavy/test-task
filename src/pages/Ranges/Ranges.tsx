@@ -7,9 +7,25 @@ const items = untypedItems as Item[];
 const ranges = untypedRanges as Range[];
 
 const transform = (items: Item[]) => {
-  // TODO implement
+  if (items.length === 0) return [];
 
-  return ranges;
+  const implementedRanges = items.reduce((rangeList, { color, date }) => {
+    if (rangeList.length === 0) {
+      return [{ color, start: date, end: date }];
+    }
+
+    const lastRange = rangeList[rangeList.length - 1];
+
+    if (lastRange.color === color) {
+      lastRange.end = date;
+    } else {
+      rangeList.push({ color, start: date, end: date });
+    }
+
+    return rangeList;
+  }, [] as Range[]);
+
+  return implementedRanges;
 };
 
 const RangesView = ({ ranges }: { ranges: Range[] }) => (

@@ -2,8 +2,7 @@
 import { useRef } from 'react';
 
 export const useRenderHighlight = (className: string) => {
-  // TODO fix any
-  const ref = useRef<any>(null);
+  const ref = useRef<HTMLLIElement>(null);
 
   if (ref.current) {
     ref.current.classList.add(className);
@@ -17,25 +16,23 @@ export const useRenderHighlight = (className: string) => {
   return ref;
 };
 
-// TODO fix any
-export const range = (n: number, fn: (n: number) => any) => {
-  const result = [];
+export const range = <Type>(n: number, fn: (n: number) => Type) => {
+  const result: Type[] = [];
   for (let i = 0; i < n; i++) {
     result.push(fn(i + 1));
   }
   return result;
 };
 
-// TODO fix any
-export const chooseRandomly = (items: any[]) => {
+export const chooseRandomly = <Type>(items: Type[]): Type => {
   const index = Math.floor(Math.random() * items.length);
   return items[index];
 };
 
-export const addDays = (date: Date, amount: number) => {
+export const addDays = (date: Date, amount: number): Date => {
   const newDate = new Date(date);
   newDate.setDate(newDate.getDate() + amount);
   return newDate;
 };
 
-export const formatDate = (date: Date) => date.toISOString().split('T')[0];
+export const formatDate = (date: Date): string => date.toISOString().split('T')[0];

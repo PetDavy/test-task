@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useRef } from 'react';
 
 export const useRenderHighlight = (className: string) => {

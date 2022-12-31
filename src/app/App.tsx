@@ -1,6 +1,16 @@
 import { Outlet, ReactLocation, Route, Router } from '@tanstack/react-location';
 import { Welcome, ProtectedRout } from '~/components';
-import { OptionButtons, QnA, TodoList, Scroller, Ranges, Anotations, NotFound } from '~/pages';
+import {
+  OptionButtons,
+  QnA,
+  TodoList,
+  Scroller,
+  Ranges,
+  Anotations,
+  NotFound,
+  Auth,
+} from '~/pages';
+import { AuthTypes } from '~/pages/Auth/types';
 import { Header } from './Header';
 
 const reactLocation = new ReactLocation();
@@ -32,18 +42,26 @@ const routes: Route[] = [
   },
   {
     path: 'anotations',
+    element: (
+      <ProtectedRout>
+        <Anotations />
+      </ProtectedRout>
+    ),
+  },
+  {
+    path: 'auth',
     children: [
       {
         path: 'login',
-        element: <div>Login</div>,
+        element: <Auth authType={AuthTypes.LOGIN} />,
       },
       {
-        path: 'images',
-        element: (
-          <ProtectedRout>
-            <Anotations />
-          </ProtectedRout>
-        ),
+        path: 'register',
+        element: <Auth authType={AuthTypes.REGISTER} />,
+      },
+      {
+        path: 'reset',
+        element: <Auth authType={AuthTypes.RESET} />,
       },
     ],
   },

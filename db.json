@@ -1,10 +1,54 @@
 {
-  "posts": [
-    { "id": 1, "title": "json-server", "author": "typicode" },
-    { "id": 2, "title": "json-server", "author": "typicode" }
+  "annotations": [
+    {
+      "id": 1,
+      "author": "Josh Dun",
+      "comment": "Please remove this image from the slide.",
+      "useId": 1,
+      "pos": {
+        "x": 0.609,
+        "y": 0.6401
+      }
+    },
+    {
+      "id": 2,
+      "author": "Marie Ruecker",
+      "comment": "It doesn't look that good, please put some more creativeness into this.",
+      "useId": 2,
+      "pos": {
+        "x": 0.0387,
+        "y": 0.1453
+      }
+    },
+    {
+      "id": 3,
+      "author": "Stephen Huels",
+      "comment": "Please change the color to red.",
+      "useId": 3,
+      "pos": {
+        "x": 0.1314,
+        "y": 0.3719
+      }
+    }
   ],
-  "comments": [
-    { "id": 1, "body": "some comment", "postId": 1 }
-  ],
-  "profile": { "name": "typicode" }
+  "users": [
+    {
+      "id": 1,
+      "name": "Josh Dun",
+      "email": "test@gmail.com",
+      "password": "123456"
+    },
+    {
+      "id": 2,
+      "name": "Marie Ruecker",
+      "email": "marie@gmail.com",
+      "password": "123456"
+    },
+    {
+      "id": 3,
+      "name": "Stephen Huels",
+      "email": "heuls@gmail.com",
+      "password": "123456"
+    }
+  ]
 }

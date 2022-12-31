@@ -1,4 +1,4 @@
-import { CenteredLayout, Register, Login } from '~/components';
+import { CenteredLayout, Register, Login, Reset } from '~/components';
 import { AuthTypes } from './types';
 
 interface AuthProps {
@@ -10,7 +10,7 @@ export const Auth = ({ authType }: AuthProps) => {
     <CenteredLayout>
       {authType === AuthTypes.LOGIN && <Login />}
       {authType === AuthTypes.REGISTER && <Register />}
-      {authType === AuthTypes.RESET && <h2>Reset</h2>}
+      {authType === AuthTypes.RESET && <Reset />}
     </CenteredLayout>
   );
 };

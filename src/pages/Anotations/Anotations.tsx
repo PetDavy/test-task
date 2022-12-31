@@ -1,7 +1,10 @@
 import { useState } from 'react';
+import { CenteredLayout } from '~/components';
 
 export const Anotations = () => {
   return (
-    <h2>Anotaions</h2>
-  )
-}
+    <CenteredLayout>
+      <h2>Anotaions</h2>
+    </CenteredLayout>
+  );
+};

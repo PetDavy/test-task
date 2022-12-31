@@ -45,6 +45,11 @@ export const Register = () => {
           <FormGroup value={name} setValue={setName} label="Name" />
           <FormGroup value={email} setValue={setEmail} type="email" label="Email" />
           <FormGroup value={password} setValue={setPassword} type="password" label="Password" />
+          <p className="auth__info">
+            <Link to="/auth/reset" className="auth__link">
+              Forgot password?
+            </Link>
+          </p>
           <button type="submit" className="auth__form-btn">
             Continue
           </button>

@@ -1,6 +1,7 @@
 import { Link, useNavigate } from '@tanstack/react-location';
 import { useState, FormEvent } from 'react';
 import { login } from '~/api';
+import { CheckBox } from './CheckBox';
 import { FormGroup } from './FormGroup';
 import { ErrorField, isPrintableError } from './types';
 import './Auth.scss';
@@ -8,6 +9,7 @@ import './Auth.scss';
 export const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [rememberMe, setRememberMe] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [errorFields, setErrorFields] = useState<ErrorField[]>([]);
 
@@ -20,7 +22,10 @@ export const Login = () => {
       const [user] = await login({ email, password });
 
       if (user.id) {
-        localStorage.setItem('userId', String(user.id));
+        rememberMe
+          ? localStorage.setItem('userId', String(user.id))
+          : sessionStorage.setItem('userId', String(user.id));
+
         setEmail('');
         setPassword('');
         setErrorMessage('');
@@ -63,6 +68,12 @@ export const Login = () => {
             label="password"
             error={errorFields.find((field) => field.field === 'password')}
           />
+          <p className="auth__info">
+            <Link to="/auth/reset" className="auth__link">
+              Forgot password?
+            </Link>
+          </p>
+          <CheckBox value={rememberMe} setValue={setRememberMe} label="Remember me" />
           <button type="submit" className="auth__form-btn">
             Continue
           </button>

@@ -56,11 +56,20 @@
     font-weight: 500;
     border-radius: 4px;
     cursor: pointer;
+
+    &:hover {
+      background: #008960 !important;
+    }
   }
 
   &__info {
     padding: 0 20px;
     font-size: 14px;
+    margin-bottom: 25px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 
   &__error {
@@ -75,6 +84,7 @@
   margin-bottom: 25px;
   position: relative;
 
+  
   &__input {
     width: 100%;
     padding: 10px 8px;
@@ -90,12 +100,12 @@
       outline: none;
       border-color: #61a8ea;
     }
-
+    
     &::placeholder {
       text-transform: capitalize;
     }
   }
-
+  
   &__input-icon {
     position: absolute;
     top: 20px;
@@ -103,11 +113,32 @@
     transform: translateY(-50%);
     cursor: pointer;
   }
+  
+  &__checkbox {
+    height: 20px;
+    width: 20px;
+    margin-right: 10px;
+    cursor: pointer;
 
+    &:checked {
+      accent-color: #3ebf8a;
+    }
+  }
+
+  &__label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  
   &__error {
     text-align: right;
     color: #e1485b;
     font-size: 12px;
     margin-top: 5px;
+  }
+
+  &--checkbox {
+    align-self: flex-start;
   }
 }

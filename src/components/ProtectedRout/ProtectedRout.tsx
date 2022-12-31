@@ -7,7 +7,7 @@ export const ProtectedRout = ({ children }: PropsWithChildren) => {
   const [isPending, setIsPending] = useState(true);
 
   useLayoutEffect(() => {
-    const userId = localStorage.getItem('userId');
+    const userId = localStorage.getItem('userId') || sessionStorage.getItem('userId');
     if (userId) {
       authWithUserId(Number(userId))
         .then((user) => user.id && setIsAuthenticated(true))

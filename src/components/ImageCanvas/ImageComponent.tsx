@@ -2,11 +2,8 @@ import { useState, useEffect, useRef, WheelEvent, SyntheticEvent } from 'react';
 import Draggable, { DraggableEvent, DraggableData } from 'react-draggable';
 import { Image } from '~/api';
 import { AnnotationsList } from '~/components';
-
-interface ImageSize {
-  width: number;
-  height: number;
-}
+import { CommentInput } from './CommentInput';
+import { ImageSize, CommentPosition } from './types';
 
 interface ImageProps {
   image: Image;
@@ -14,6 +11,8 @@ interface ImageProps {
 
 const ZOOM_STEP = 15;
 const FRAME_WIDTH = 1000;
+const TOOLTIP_WIDTH = 365;
+const TOOLTIP_HEIGHT = 200;
 
 export const ImageComponent = ({ image }: ImageProps) => {
   const [imageSize, setImageSize] = useState<ImageSize>({ width: 0, height: 0 });
@@ -21,6 +20,7 @@ export const ImageComponent = ({ image }: ImageProps) => {
   const [zoomX, setZoomX] = useState(0);
   const [dragX, setDragX] = useState(0);
   const [dragY, setDragY] = useState(0);
+  const [commentPosition, setCommentPosition] = useState<CommentPosition | null>(null);
 
   const imageRef = useRef<HTMLImageElement>(null);
 
@@ -78,6 +78,17 @@ export const ImageComponent = ({ image }: ImageProps) => {
     }
   };
 
+  const handleClick = (event: { nativeEvent: { offsetX: number; offsetY: number } }) => {
+    const { offsetX, offsetY } = event.nativeEvent;
+    const x = 1 / (imageSize.width / offsetX);
+    const y = 1 / (imageSize.height / offsetY);
+
+    setCommentPosition({
+      x: parseFloat(x.toFixed(4)),
+      y: parseFloat(y.toFixed(4)),
+    });
+  };
+
   return (
     <div
       className="image__container"
@@ -85,12 +96,11 @@ export const ImageComponent = ({ image }: ImageProps) => {
     >
       <Draggable
         bounds={{ top: zoom, bottom: -zoom, left: zoomX / 2, right: -zoomX / 2 }}
-        axis="y"
         onDrag={handleDrag}
         defaultClassNameDragging="image--dragging"
         position={{ x: dragX, y: dragY }}
       >
-        <div className="image" onWheel={handleZoom}>
+        <div className="image" onWheel={handleZoom} onDoubleClick={handleClick}>
           <img
             className="image__image"
             src={image.url}
@@ -98,6 +108,26 @@ export const ImageComponent = ({ image }: ImageProps) => {
             onLoad={getInitialSize}
             ref={imageRef}
           />
+          {commentPosition && (
+            <CommentInput
+              commentPosition={commentPosition}
+              imageId={image.id}
+              left={commentPosition.x * imageSize.width}
+              top={commentPosition.y * imageSize.height}
+              isLeft={
+                commentPosition.x * imageSize.width - TOOLTIP_WIDTH / 2 <
+                (imageSize.width - FRAME_WIDTH) / 2
+              }
+              isRight={
+                imageSize.width - commentPosition.x * imageSize.width - TOOLTIP_WIDTH / 2 <
+                (imageSize.width - FRAME_WIDTH) / 2
+              }
+              isBottom={
+                imageSize.height - commentPosition.y * imageSize.height - TOOLTIP_HEIGHT / 2 < 0
+              }
+              setCommentPosition={setCommentPosition}
+            />
+          )}
           <AnnotationsList imageSize={imageSize} toOffsetX={(imageSize.width - FRAME_WIDTH) / 2} />
         </div>
       </Draggable>

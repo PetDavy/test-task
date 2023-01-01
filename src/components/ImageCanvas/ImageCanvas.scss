@@ -42,3 +42,126 @@
     cursor: grabbing;
   }
 }
+
+.comment-input {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  transform: translate(-50%, -50%);
+  background: #ed7058;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 700;
+  color: #fff;
+  box-shadow: 0px 2px 6px rgba(69, 69, 69, 0.5);
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+  z-index: 3;
+
+  &__input-container {
+    position: absolute;
+    top: calc(100% + 25px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 365px;
+    padding: 16px 25px;
+    background: #fff;
+    border-radius: 4px;
+    border: 1px solid #efeff0;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: -7px;
+      left: 50%;
+      transform: translateX(-50%) rotate(45deg);
+      border-top: 1px solid #efeff0;
+      border-left: 1px solid #efeff0;
+      width: 12px;
+      height: 12px;
+      background: #fff;
+    }
+
+    &--left {
+      left: 0;
+      transform: translateX(0);
+
+      &::before {
+        left: 0;
+        transform: translateX(50%) rotate(45deg);
+      }
+    }
+
+    &--right {
+      left: initial;
+      right: 0;
+      transform: translateX(0);
+
+      &::before {
+        left: initial;
+        right: 0;
+        transform: translateX(-50%) rotate(45deg);
+      }
+    }
+
+    &--bottom {
+      top: initial;
+      bottom: calc(100% + 25px);
+
+      &::before {
+        top: initial;
+        bottom: -7px;
+        border-top: none;
+        border-left: none;
+        border-bottom: 1px solid #d4dee9;
+        border-right: 1px solid #d4dee9;
+      }
+    }
+
+  }
+
+  &__input {
+    width: 100%;
+    height: 30px;
+    font-size: 14px;
+    line-height: 20px;
+    padding-bottom: 5px;
+    padding-right: 30px;
+    border-bottom: 1px solid #9398a2;
+    font-weight: 400;
+    outline: none;
+    color: #4a4a4a;
+    letter-spacing: 0.5px;
+
+    &:focus {
+      border-bottom: 1px solid #4c68a1;
+    }
+  }
+
+  &__send-icon {
+    position: absolute;
+    top: 50%;
+    right: 25px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+
+    &:hover,
+    &:focus {
+      transform: translateY(-50%) scale(1.1);
+    }
+  }
+
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+  }
+}

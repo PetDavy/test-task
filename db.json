@@ -32,17 +32,6 @@
         "x": 0.1314,
         "y": 0.3719
       }
-    },
-    {
-      "id": 4,
-      "author": "Stephen Huels",
-      "comment": "Please change the color to red.",
-      "userId": 3,
-      "imageId": 1,
-      "pos": {
-        "x": 0.0387,
-        "y": 0.919
-      }
     }
   ],
   "users": [

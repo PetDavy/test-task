@@ -108,6 +108,46 @@ export async function getAnnotations(id: number): Promise<Anotation[]> {
   return await anotationsResponse.json();
 }
 
+export async function creatAnnotation({
+  authorId,
+  comment,
+  imageId,
+  pos,
+}: {
+  authorId: number;
+  comment: string;
+  imageId: number;
+  pos: Pos;
+}): Promise<Anotation> {
+  const authorData = await fetch(`${API_URL}/users/${authorId}`);
+
+  if (!authorData.ok) {
+    throw new Error('Could not get author');
+  }
+
+  const author = await authorData.json();
+
+  const anotationsResponse = await fetch(`${API_URL}/annotations`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      author: author.name,
+      comment: comment.slice(0, 40),
+      userId: author.id,
+      imageId,
+      pos,
+    }),
+  });
+
+  if (!anotationsResponse.ok) {
+    throw new Error('Could not create anotation');
+  }
+
+  return await anotationsResponse.json();
+}
+
 export async function deletAnnotation(id: number): Promise<boolean> {
   const anotationsResponse = await fetch(`${API_URL}/annotations/${id}`, {
     method: 'DELETE',

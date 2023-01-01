@@ -1,9 +1,3 @@
-import clsx from 'clsx';
-import { useState } from 'react';
-import EyeCrossIcon from '~/assets/icons/eye-cross.svg';
-import EyeIcon from '~/assets/icons/eye.svg';
-import { ErrorField } from './types';
-
 interface CheckBoxProps {
   value: boolean;
   label: string;

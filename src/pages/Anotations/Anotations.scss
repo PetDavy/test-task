@@ -1,0 +1,12 @@
+.anotations {
+  width: 100%;
+  height: 100%;
+  background: #1e1e1e;
+
+  &__content {
+    max-width: 1000px;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+  }
+}

@@ -10,6 +10,26 @@ export interface UserResponse extends User {
   id: number;
 }
 
+export interface Image {
+  id: number;
+  name: string;
+  url: string;
+}
+
+export interface Anotation {
+  id: string;
+  author: string;
+  comment: string;
+  userId: number;
+  imageId: number;
+  pos: Pos;
+}
+
+export interface Pos {
+  x: number;
+  y: number;
+}
+
 export async function createUser({ name, email, password }: User): Promise<UserResponse> {
   const userByEmail = await getUserByEmail(email);
 
@@ -66,4 +86,24 @@ export async function login({
   }
 
   return await userResponse.json();
+}
+
+export async function getImages(): Promise<Image[]> {
+  const imagesResponse = await fetch(`${API_URL}/images`);
+
+  if (!imagesResponse.ok) {
+    throw new Error('Could not get images');
+  }
+
+  return await imagesResponse.json();
+}
+
+export async function getAnnotations(id: number): Promise<Anotation[]> {
+  const anotationsResponse = await fetch(`${API_URL}/annotations?imageId=${id}`);
+
+  if (!anotationsResponse.ok) {
+    throw new Error('Could not get anotations');
+  }
+
+  return await anotationsResponse.json();
 }

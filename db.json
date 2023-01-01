@@ -5,6 +5,7 @@
       "author": "Josh Dun",
       "comment": "Please remove this image from the slide.",
       "useId": 1,
+      "imageId": 1,
       "pos": {
         "x": 0.609,
         "y": 0.6401
@@ -15,6 +16,7 @@
       "author": "Marie Ruecker",
       "comment": "It doesn't look that good, please put some more creativeness into this.",
       "useId": 2,
+      "imageId": 1,
       "pos": {
         "x": 0.0387,
         "y": 0.1453
@@ -25,6 +27,7 @@
       "author": "Stephen Huels",
       "comment": "Please change the color to red.",
       "useId": 3,
+      "imageId": 1,
       "pos": {
         "x": 0.1314,
         "y": 0.3719
@@ -55,6 +58,13 @@
       "email": "admin@gmail.com",
       "password": "12345678",
       "id": 4
+    }
+  ],
+  "images": [
+    {
+      "id": 1,
+      "name": "Autumn road",
+      "url": "/src/assets/storage/image-1.png"
     }
   ]
 }

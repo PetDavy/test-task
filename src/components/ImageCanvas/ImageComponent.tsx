@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, WheelEvent, SyntheticEvent } from 'react';
 import Draggable, { DraggableEvent, DraggableData } from 'react-draggable';
 import { Image, Anotation } from '~/api';
+import { AnnotationsList } from '~/components';
 
 interface ImageSize {
   width: number;
@@ -98,9 +99,11 @@ export const ImageComponent = ({ image, annotations }: ImageProps) => {
             onLoad={getInitialSize}
             ref={imageRef}
           />
-          <div className="image__anotations">
-            {JSON.stringify(imageSize)} zoom: {zoom}
-          </div>
+          <AnnotationsList
+            imageSize={imageSize}
+            annotations={annotations}
+            toOffsetX={(imageSize.width - FRAME_WIDTH) / 2}
+          />
         </div>
       </Draggable>
     </div>

@@ -4,3 +4,4 @@ export * from './ProtectedRout';
 export * from './Auth';
 export * from './AnotiationsHeader';
 export * from './ImageCanvas';
+export * from './AnnotationsList';

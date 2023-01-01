@@ -1,16 +1,22 @@
 import { Navigate } from '@tanstack/react-location';
-import { useLayoutEffect, useState, PropsWithChildren } from 'react';
+import { useLayoutEffect, useState, createContext, PropsWithChildren } from 'react';
 import { authWithUserId } from '~/api';
+
+export const UserContext = createContext<number | null>(null);
 
 export const ProtectedRout = ({ children }: PropsWithChildren) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [userId, setUserId] = useState<number | null>(null);
   const [isPending, setIsPending] = useState(true);
 
   useLayoutEffect(() => {
     const userId = localStorage.getItem('userId') || sessionStorage.getItem('userId');
     if (userId) {
       authWithUserId(Number(userId))
-        .then((user) => user.id && setIsAuthenticated(true))
+        .then((user) => {
+          setIsAuthenticated(true);
+          setUserId(user.id);
+        })
         .catch(() => setIsAuthenticated(false))
         .finally(() => setIsPending(false));
     } else {
@@ -26,5 +32,5 @@ export const ProtectedRout = ({ children }: PropsWithChildren) => {
     return <Navigate to="/auth/login" />;
   }
 
-  return children as JSX.Element;
+  return <UserContext.Provider value={userId}>{children as JSX.Element}</UserContext.Provider>;
 };

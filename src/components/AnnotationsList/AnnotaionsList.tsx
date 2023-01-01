@@ -1,17 +1,19 @@
-import { Anotation } from '~/api';
+import { useContext } from 'react';
+import { AnnotationsContext, AnnotationContextType } from '~/contexts';
 import { AnnotationItem } from './AnnotaionItem';
 import './AnnotationsList.scss';
 
 interface AnnotationsListProps {
   imageSize: { width: number; height: number };
-  annotations: Anotation[];
   toOffsetX: number;
 }
 
 const TOOLTIP_WIDTH = 365;
 const TOOLTIP_HEIGHT = 200;
 
-export const AnnotationsList = ({ imageSize, annotations, toOffsetX }: AnnotationsListProps) => {
+export const AnnotationsList = ({ imageSize, toOffsetX }: AnnotationsListProps) => {
+  const { annotations }: AnnotationContextType = useContext(AnnotationsContext);
+
   return (
     <div className="annotations">
       {annotations.map((annotation, index) => (

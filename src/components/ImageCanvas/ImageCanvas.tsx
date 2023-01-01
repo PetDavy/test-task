@@ -1,16 +1,15 @@
-import { Image, Anotation } from '~/api';
+import { Image } from '~/api';
 import { ImageComponent } from './ImageComponent';
 import './ImageCanvas.scss';
 
 interface ImageCanvasProps {
   image: Image;
-  annotations: Anotation[];
 }
 
-export const ImageCanvas = ({ image, annotations }: ImageCanvasProps) => {
+export const ImageCanvas = ({ image }: ImageCanvasProps) => {
   return (
     <div className="image-canvas">
-      <ImageComponent image={image} annotations={annotations} />
+      <ImageComponent image={image} />
     </div>
   );
 };

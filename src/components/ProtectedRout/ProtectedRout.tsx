@@ -1,8 +1,7 @@
 import { Navigate } from '@tanstack/react-location';
-import { useLayoutEffect, useState, createContext, PropsWithChildren } from 'react';
+import { useLayoutEffect, useState, PropsWithChildren } from 'react';
 import { authWithUserId } from '~/api';
-
-export const UserContext = createContext<number | null>(null);
+import { UserContext } from '~/contexts';
 
 export const ProtectedRout = ({ children }: PropsWithChildren) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);

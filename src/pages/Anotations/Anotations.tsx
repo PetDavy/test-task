@@ -1,6 +1,7 @@
 import { useState, useLayoutEffect, useEffect } from 'react';
 import { Image, Anotation, getImages, getAnnotations } from '~/api';
 import { CenteredLayout, AnotationsHeader, ImageCanvas } from '~/components';
+import { AnnotationsContext } from '~/contexts';
 
 import './Anotations.scss';
 
@@ -39,7 +40,11 @@ export const Anotations = () => {
         ) : (
           <div className="anotations__content">
             <AnotationsHeader image={activeImage as Image} />
-            <ImageCanvas image={activeImage as Image} annotations={activeAnnotations} />
+            <AnnotationsContext.Provider
+              value={{ annotations: activeAnnotations, setAnnotations: setActiveAnnotations }}
+            >
+              <ImageCanvas image={activeImage as Image} />
+            </AnnotationsContext.Provider>
           </div>
         )}
       </div>

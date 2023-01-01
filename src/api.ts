@@ -17,7 +17,7 @@ export interface Image {
 }
 
 export interface Anotation {
-  id: string;
+  id: number;
   author: string;
   comment: string;
   userId: number;
@@ -106,4 +106,16 @@ export async function getAnnotations(id: number): Promise<Anotation[]> {
   }
 
   return await anotationsResponse.json();
+}
+
+export async function deletAnnotation(id: number): Promise<boolean> {
+  const anotationsResponse = await fetch(`${API_URL}/annotations/${id}`, {
+    method: 'DELETE',
+  });
+
+  if (!anotationsResponse.ok) {
+    throw new Error('Could not delete anotation');
+  }
+
+  return true;
 }

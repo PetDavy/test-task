@@ -1,8 +1,8 @@
 import clsx from 'clsx';
 import { useContext } from 'react';
-import { Anotation } from '~/api';
+import { Anotation, deletAnnotation } from '~/api';
 import BucketIcon from '~/assets/icons/bucket.svg';
-import { UserContext } from '~/components';
+import { UserContext, AnnotationsContext } from '~/contexts';
 
 interface AnnotationItemProps {
   annotation: Anotation;
@@ -32,6 +32,19 @@ export const AnnotationItem = ({
   isBottom,
 }: AnnotationItemProps) => {
   const userId = useContext(UserContext);
+  const { setAnnotations } = useContext(AnnotationsContext);
+
+  const handleDelete = async () => {
+    try {
+      const res = await deletAnnotation(annotation.id);
+
+      if (res) {
+        setAnnotations((prev) => prev.filter((item) => item.id !== annotation.id));
+      }
+    } catch (error) {
+      alert('Could not delete annotation');
+    }
+  };
 
   return (
     <div className="annotation-item" style={{ top, left }}>
@@ -49,7 +62,7 @@ export const AnnotationItem = ({
           <div className="annotation-item__comment">{annotation.comment}</div>
         </div>
         {annotation.userId === userId && (
-          <div className="annotation-item__delete">
+          <div className="annotation-item__delete" onClick={handleDelete}>
             <img src={BucketIcon} alt="bucket" />
           </div>
         )}

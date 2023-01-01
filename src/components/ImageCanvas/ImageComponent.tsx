@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, WheelEvent, SyntheticEvent } from 'react';
 import Draggable, { DraggableEvent, DraggableData } from 'react-draggable';
-import { Image, Anotation } from '~/api';
+import { Image } from '~/api';
 import { AnnotationsList } from '~/components';
 
 interface ImageSize {
@@ -10,13 +10,12 @@ interface ImageSize {
 
 interface ImageProps {
   image: Image;
-  annotations: Anotation[];
 }
 
 const ZOOM_STEP = 15;
 const FRAME_WIDTH = 1000;
 
-export const ImageComponent = ({ image, annotations }: ImageProps) => {
+export const ImageComponent = ({ image }: ImageProps) => {
   const [imageSize, setImageSize] = useState<ImageSize>({ width: 0, height: 0 });
   const [zoom, setZoom] = useState(0);
   const [zoomX, setZoomX] = useState(0);
@@ -99,11 +98,7 @@ export const ImageComponent = ({ image, annotations }: ImageProps) => {
             onLoad={getInitialSize}
             ref={imageRef}
           />
-          <AnnotationsList
-            imageSize={imageSize}
-            annotations={annotations}
-            toOffsetX={(imageSize.width - FRAME_WIDTH) / 2}
-          />
+          <AnnotationsList imageSize={imageSize} toOffsetX={(imageSize.width - FRAME_WIDTH) / 2} />
         </div>
       </Draggable>
     </div>

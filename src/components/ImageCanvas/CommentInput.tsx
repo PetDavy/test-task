@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { useState, useContext } from 'react';
+import { useState, useContext, FormEvent } from 'react';
 import { creatAnnotation } from '~/api';
 import SendIcon from '~/assets/icons/send.svg';
 import { AnnotationsContext, UserContext } from '~/contexts';
@@ -30,7 +30,9 @@ export const CommentInput = ({
   const { annotations, setAnnotations } = useContext(AnnotationsContext);
   const userId = useContext(UserContext);
 
-  const handleCreateAnnotation = async () => {
+  const handleCreateAnnotation = async (event: FormEvent) => {
+    event.preventDefault();
+
     if (!commentPosition || !commentValue || !userId) {
       return;
     }
@@ -55,12 +57,13 @@ export const CommentInput = ({
     <>
       <div className="comment-input" style={{ top, left }}>
         {annotations.length + 1}
-        <div
+        <form
           className={clsx('comment-input__input-container', {
             'comment-input__input-container--left': isLeft,
             'comment-input__input-container--right': isRight,
             'comment-input__input-container--bottom': isBottom,
           })}
+          onSubmit={handleCreateAnnotation}
         >
           <input
             className="comment-input__input"
@@ -68,10 +71,10 @@ export const CommentInput = ({
             value={commentValue}
             onChange={(e) => setCommentValue(e.target.value)}
           />
-          <span className="comment-input__send-icon" onClick={handleCreateAnnotation}>
+          <button type="submit" className="comment-input__send-icon">
             <img src={SendIcon} alt="send" />
-          </span>
-        </div>
+          </button>
+        </form>
       </div>
       <div className="comment-input__overlay" onClick={() => setCommentPosition(null)} />
     </>

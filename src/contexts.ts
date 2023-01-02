@@ -1,9 +1,9 @@
 import { createContext, Dispatch, SetStateAction } from 'react';
-import { Anotation } from '~/api';
+import { Annotation } from '~/api';
 
 export interface AnnotationContextType {
-  annotations: Anotation[];
-  setAnnotations: Dispatch<SetStateAction<Anotation[]>>;
+  annotations: Annotation[];
+  setAnnotations: Dispatch<SetStateAction<Annotation[]>>;
 }
 
 export const AnnotationsContext = createContext<AnnotationContextType>({} as AnnotationContextType);

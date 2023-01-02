@@ -16,7 +16,7 @@ export interface Image {
   url: string;
 }
 
-export interface Anotation {
+export interface Annotation {
   id: number;
   author: string;
   comment: string;
@@ -62,14 +62,19 @@ export async function getUserByEmail(email: string): Promise<UserResponse[]> {
   return await userResponse.json();
 }
 
-export async function authWithUserId(userId: number): Promise<UserResponse> {
-  const userResponse = await fetch(`${API_URL}/users/${userId}`);
+export async function authWithUserId(userId: number): Promise<UserResponse | void> {
+  try {
+    const userResponse = await fetch(`${API_URL}/users/${userId}`);
 
-  if (!userResponse.ok) {
+    if (!userResponse.ok) {
+      throw new Error('Could not get user');
+    }
+
+    return await userResponse.json();
+  } catch (error) {
+    alert('Please start the server \n json-server --watch db.json');
     throw new Error('Could not get user');
   }
-
-  return await userResponse.json();
 }
 
 export async function login({
@@ -78,14 +83,19 @@ export async function login({
 }: {
   email: string;
   password: string;
-}): Promise<UserResponse[]> {
-  const userResponse = await fetch(`${API_URL}/users?email=${email}&password=${password}`);
+}): Promise<UserResponse[] | void> {
+  try {
+    const userResponse = await fetch(`${API_URL}/users?email=${email}&password=${password}`);
 
-  if (!userResponse.ok) {
+    if (!userResponse.ok) {
+      throw new Error('Could not login');
+    }
+
+    return await userResponse.json();
+  } catch (error) {
+    alert('Please start the server \n json-server --watch db.json');
     throw new Error('Could not login');
   }
-
-  return await userResponse.json();
 }
 
 export async function getImages(): Promise<Image[]> {
@@ -98,14 +108,14 @@ export async function getImages(): Promise<Image[]> {
   return await imagesResponse.json();
 }
 
-export async function getAnnotations(id: number): Promise<Anotation[]> {
-  const anotationsResponse = await fetch(`${API_URL}/annotations?imageId=${id}`);
+export async function getAnnotations(id: number): Promise<Annotation[]> {
+  const annotationsResponse = await fetch(`${API_URL}/annotations?imageId=${id}`);
 
-  if (!anotationsResponse.ok) {
-    throw new Error('Could not get anotations');
+  if (!annotationsResponse.ok) {
+    throw new Error('Could not get annotations');
   }
 
-  return await anotationsResponse.json();
+  return await annotationsResponse.json();
 }
 
 export async function creatAnnotation({
@@ -118,7 +128,7 @@ export async function creatAnnotation({
   comment: string;
   imageId: number;
   pos: Pos;
-}): Promise<Anotation> {
+}): Promise<Annotation> {
   const authorData = await fetch(`${API_URL}/users/${authorId}`);
 
   if (!authorData.ok) {
@@ -127,7 +137,7 @@ export async function creatAnnotation({
 
   const author = await authorData.json();
 
-  const anotationsResponse = await fetch(`${API_URL}/annotations`, {
+  const annotationsResponse = await fetch(`${API_URL}/annotations`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -141,20 +151,20 @@ export async function creatAnnotation({
     }),
   });
 
-  if (!anotationsResponse.ok) {
-    throw new Error('Could not create anotation');
+  if (!annotationsResponse.ok) {
+    throw new Error('Could not create annotation');
   }
 
-  return await anotationsResponse.json();
+  return await annotationsResponse.json();
 }
 
 export async function deletAnnotation(id: number): Promise<boolean> {
-  const anotationsResponse = await fetch(`${API_URL}/annotations/${id}`, {
+  const annotationsResponse = await fetch(`${API_URL}/annotations/${id}`, {
     method: 'DELETE',
   });
 
-  if (!anotationsResponse.ok) {
-    throw new Error('Could not delete anotation');
+  if (!annotationsResponse.ok) {
+    throw new Error('Could not delete annotation');
   }
 
   return true;

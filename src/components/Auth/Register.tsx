@@ -24,7 +24,7 @@ export const Register = () => {
       setPassword('');
       setErrorMessage('');
 
-      navigate({ to: '/anotations' });
+      navigate({ to: '/annotations' });
     } catch (error) {
       isPrintableError(error) && setErrorMessage(error.message);
     }

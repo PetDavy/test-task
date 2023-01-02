@@ -15,7 +15,7 @@ export const AnnotationsList = ({ imageSize, toOffsetX }: AnnotationsListProps) 
   const { annotations }: AnnotationContextType = useContext(AnnotationsContext);
 
   return (
-    <div className="annotations">
+    <div className="annotations-list">
       {annotations.map((annotation, index) => (
         <AnnotationItem
           key={annotation.id}

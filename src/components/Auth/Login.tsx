@@ -19,7 +19,13 @@ export const Login = () => {
     e.preventDefault();
 
     try {
-      const [user] = await login({ email, password });
+      const userRes = await login({ email, password });
+
+      if (!Array.isArray(userRes)) {
+        return;
+      }
+
+      const user = userRes[0];
 
       if (user.id) {
         rememberMe
@@ -30,7 +36,7 @@ export const Login = () => {
         setPassword('');
         setErrorMessage('');
 
-        navigate({ to: '/anotations' });
+        navigate({ to: '/annotations' });
       } else {
         setErrorFields([
           { field: 'email', message: 'Email is not valid' },

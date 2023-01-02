@@ -6,7 +6,7 @@ import {
   TodoList,
   Scroller,
   Ranges,
-  Anotations,
+  Annotations,
   NotFound,
   Auth,
 } from '~/pages';
@@ -41,10 +41,10 @@ const routes: Route[] = [
     element: <Ranges />,
   },
   {
-    path: 'anotations',
+    path: 'annotations',
     element: (
       <ProtectedRout>
-        <Anotations />
+        <Annotations />
       </ProtectedRout>
     ),
   },

@@ -31,7 +31,7 @@ export const Header = () => (
         <NavItem to="/todos">Todos</NavItem>
         <NavItem to="/scroller">Scroller</NavItem>
         <NavItem to="/ranges">Ranges</NavItem>
-        <NavItem to="/anotations">Anotations</NavItem>
+        <NavItem to="/annotations">Annotations</NavItem>
       </ul>
     </nav>
   </header>

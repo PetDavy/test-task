@@ -1,11 +1,11 @@
 import clsx from 'clsx';
 import { useContext } from 'react';
-import { Anotation, deletAnnotation } from '~/api';
+import { Annotation, deletAnnotation } from '~/api';
 import BucketIcon from '~/assets/icons/bucket.svg';
 import { UserContext, AnnotationsContext } from '~/contexts';
 
 interface AnnotationItemProps {
-  annotation: Anotation;
+  annotation: Annotation;
   label: number;
   top: number;
   left: number;

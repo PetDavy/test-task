@@ -1,0 +1,16 @@
+[
+  { "id": 1,
+    "question": "Do you run like a fish?",
+    "answer": "Absolutely man"
+  },
+  {
+    "id": 2,
+    "question": "Have you tried to swim like a dinosaur?",
+    "answer": "Nah, not my cup of tea"
+  },
+  {
+    "id": 3,
+    "question": "How are we counting from 5 to 10?",
+    "answer": "Do I look like a counter?"
+  }
+]

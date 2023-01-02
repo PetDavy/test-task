@@ -1,0 +1,144 @@
+.auth {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f6f8fc;
+  color: #2b3151;
+
+  &__container {
+    max-width: 360px;
+    width: 100%;
+    padding: 24px 48px;
+    background-color: #fff;
+    border-radius: 6px;
+    text-align: center;
+  }
+
+  &__title {
+    margin-bottom: 15px;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 32px;
+  }
+
+  &__sub-title {
+    line-height: 25px;
+    margin-bottom: 25px;
+  }
+
+  &__link {
+    color: #2856ae;
+    margin: 0 5px;
+    cursor: pointer;
+
+    &:hover {
+      color: #00308d;
+    }
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__form-btn {
+    width: 100%;
+    height: 48px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 4px;
+    background: #3ebf8a !important;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: 4px;
+    cursor: pointer;
+
+    &:hover {
+      background: #008960 !important;
+    }
+  }
+
+  &__info {
+    padding: 0 20px;
+    font-size: 14px;
+    margin-bottom: 25px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__error {
+    margin-bottom: 15px;
+    color: #e1485b;
+    font-size: 14px;
+    font-weight: 500;
+  }
+}
+
+.form-group {
+  margin-bottom: 25px;
+  position: relative;
+
+  
+  &__input {
+    width: 100%;
+    padding: 10px 8px;
+    height: 40px;
+    border: 1px solid #cdd7e5;
+    border-radius: 4px;
+
+    &--error {
+      border-color: #e1485b;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: #61a8ea;
+    }
+    
+    &::placeholder {
+      text-transform: capitalize;
+    }
+  }
+  
+  &__input-icon {
+    position: absolute;
+    top: 20px;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
+  
+  &__checkbox {
+    height: 20px;
+    width: 20px;
+    margin-right: 10px;
+    cursor: pointer;
+
+    &:checked {
+      accent-color: #3ebf8a;
+    }
+  }
+
+  &__label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  &__error {
+    text-align: right;
+    color: #e1485b;
+    font-size: 12px;
+    margin-top: 5px;
+  }
+
+  &--checkbox {
+    align-self: flex-start;
+  }
+}

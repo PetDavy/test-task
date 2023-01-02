@@ -1,0 +1,76 @@
+{
+  "annotations": [
+    {
+      "id": 1,
+      "author": "Josh Dun",
+      "comment": "Please remove this image from the slide.",
+      "userId": 1,
+      "imageId": 1,
+      "pos": {
+        "x": 0.609,
+        "y": 0.6401
+      }
+    },
+    {
+      "id": 2,
+      "author": "Marie Ruecker",
+      "comment": "It doesn't look that good, please put some more creativeness into this.",
+      "userId": 2,
+      "imageId": 1,
+      "pos": {
+        "x": 0.0387,
+        "y": 0.1453
+      }
+    },
+    {
+      "id": 3,
+      "author": "Stephen Huels",
+      "comment": "Please change the color to red.",
+      "userId": 3,
+      "imageId": 1,
+      "pos": {
+        "x": 0.1314,
+        "y": 0.3719
+      }
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "Josh Dun",
+      "email": "test@gmail.com",
+      "password": "123456"
+    },
+    {
+      "id": 2,
+      "name": "Marie Ruecker",
+      "email": "marie@gmail.com",
+      "password": "123456"
+    },
+    {
+      "id": 3,
+      "name": "Stephen Huels",
+      "email": "heuls@gmail.com",
+      "password": "123456"
+    },
+    {
+      "name": "admin",
+      "email": "admin@gmail.com",
+      "password": "12345678",
+      "id": 4
+    },
+    {
+      "name": "Harry Potter",
+      "email": "harry@gmail.com",
+      "password": "12345678",
+      "id": 5
+    }
+  ],
+  "images": [
+    {
+      "id": 1,
+      "name": "Autumn road",
+      "url": "/src/assets/storage/image-1.png"
+    }
+  ]
+}

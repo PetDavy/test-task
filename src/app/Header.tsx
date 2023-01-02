@@ -5,7 +5,7 @@ const NavItem = (props: LinkProps) => {
   const matchRoute = useMatchRoute();
   const active = Boolean(matchRoute({ to: props.to }));
   return (
-    <li className="px-4">
+    <li className="px-1 sm:px-2 md:px-4">
       <Link
         {...props}
         className={clsx(
@@ -13,6 +13,7 @@ const NavItem = (props: LinkProps) => {
           'text-slate-200 hover:text-white hover:drop-shadow shadow-white transition-all',
           'after:h-0.5 after:w-full after:bg-white after:absolute after:bottom-px after:left-0',
           'after:shadow after:shadow-white after:transition-all after:origin-center',
+          'text-xs sm:text-base',
           active ? 'after:scale-100' : 'after:scale-0',
         )}
       />

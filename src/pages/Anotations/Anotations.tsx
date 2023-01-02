@@ -1,5 +1,7 @@
 import { useState, useLayoutEffect, useEffect } from 'react';
 import { Image, Anotation, getImages, getAnnotations } from '~/api';
+import CrossIcon from '~/assets/icons/cross.svg';
+import MouseIcon from '~/assets/icons/mouse.svg';
 import { CenteredLayout, AnotationsHeader, ImageCanvas } from '~/components';
 import { AnnotationsContext } from '~/contexts';
 
@@ -45,6 +47,16 @@ export const Anotations = () => {
             >
               <ImageCanvas image={activeImage as Image} />
             </AnnotationsContext.Provider>
+            <div className="anotations__footer">
+              To leave a comment, mouseover
+              <span className="anotations__footer-icon">
+                <img src={CrossIcon} alt="cross" />
+              </span>
+              on an image and double click the left mouse button
+              <span className="anotations__footer-icon">
+                <img src={MouseIcon} alt="mouse" />
+              </span>
+            </div>
           </div>
         )}
       </div>

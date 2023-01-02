@@ -24,30 +24,17 @@ export const ImageComponent = ({ image }: ImageProps) => {
 
   const imageRef = useRef<HTMLImageElement>(null);
 
-  useEffect(() => {
-    const zoomAbs = Math.abs(zoom);
-    const zoomXAbs = Math.abs(zoomX);
+  const getInitialSize = (event: SyntheticEvent<HTMLImageElement>) => {
+    const { width, height } = event.currentTarget;
+    setImageSize({ width, height });
+  };
 
-    if (zoomAbs < Math.abs(dragY)) {
-      setDragY(dragY > 0 ? zoomAbs : -zoomAbs);
-    }
-
-    if (zoomXAbs === 0) {
-      setDragX(0);
-    } else if (zoomXAbs / 2 < Math.abs(dragX)) {
-      setDragX(dragX > 0 ? zoomXAbs / 2 : -zoomXAbs / 2);
-    }
-
+  const calculateImageSize = () => {
     if (imageRef.current) {
       const { clientWidth: width, clientHeight: height } = imageRef.current;
 
       setImageSize({ width, height });
     }
-  }, [zoom, dragY, zoomX, dragX]);
-
-  const getInitialSize = (event: SyntheticEvent<HTMLImageElement>) => {
-    const { width, height } = event.currentTarget;
-    setImageSize({ width, height });
   };
 
   const handleZoom = (event: WheelEvent<HTMLDivElement>) => {
@@ -88,6 +75,31 @@ export const ImageComponent = ({ image }: ImageProps) => {
       y: parseFloat(y.toFixed(4)),
     });
   };
+
+  useEffect(() => {
+    window.addEventListener('resize', calculateImageSize);
+
+    return () => {
+      window.removeEventListener('resize', calculateImageSize);
+    };
+  }, []);
+
+  useEffect(() => {
+    const zoomAbs = Math.abs(zoom);
+    const zoomXAbs = Math.abs(zoomX);
+
+    if (zoomAbs < Math.abs(dragY)) {
+      setDragY(dragY > 0 ? zoomAbs : -zoomAbs);
+    }
+
+    if (zoomXAbs === 0) {
+      setDragX(0);
+    } else if (zoomXAbs / 2 < Math.abs(dragX)) {
+      setDragX(dragX > 0 ? zoomXAbs / 2 : -zoomXAbs / 2);
+    }
+
+    calculateImageSize();
+  }, [zoom, dragY, zoomX, dragX]);
 
   return (
     <div

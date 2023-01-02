@@ -58,6 +58,12 @@
       "email": "admin@gmail.com",
       "password": "12345678",
       "id": 4
+    },
+    {
+      "name": "Harry Potter",
+      "email": "harry@gmail.com",
+      "password": "12345678",
+      "id": 5
     }
   ],
   "images": [
